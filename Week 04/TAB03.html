@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>HTML Table</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<table border="1">
+		<caption>Bordered table</caption>
+
+		<tr>
+			<th>Name</th>
+			<th>Birthday</th>
+			<th>Phone</th>
+		</tr>
+
+		<tr>
+			<td>Jacky</td>
+			<td>5/13</td>
+			<td>857-555-5555</td>
+		</tr>
+
+		<tr>
+			<td>Sparky</td>
+			<td>11/28</td>
+			<td>303-555-5555</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table border="0">
+		<caption>Borderless table</caption>
+
+		<tr>
+			<th>Name</th>
+			<th>Birthday</th>
+			<th>Phone</th>
+		</tr>
+
+		<tr>
+			<td>Jacky</td>
+			<td>5/13</td>
+			<td>857-555-5555</td>
+		</tr>
+
+		<tr>
+			<td>Sparky</td>
+			<td>11/28</td>
+			<td>303-555-5555</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table border="1">
+		<caption>colspan</caption>
+
+		<tr>
+			<td colspan=“2”>Birthday List</td>
+		</tr>
+
+		<tr>
+			<td>James</td>
+			<td>11/08</td>
+		</tr>
+
+		<tr>
+			<td>Karen</td>
+			<td>4/17</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table border="1">
+		<caption>Rowspan</caption>
+
+		<tr>
+			<td rowspan=" 2">This spans two rows</td>
+			<td>Row 1 Column 2</td>
+		</tr>
+
+		<tr>
+			<td>Row 2 Column 2</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table>
+		<caption>Work Schedule</caption>
+
+		<thead>
+			<tr>
+				<th id="day">Day</th>
+				<th id="hours">Hours</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td headers="day">Monday</td>
+				<td headers="hours">4</td>
+			</tr>
+			<tr>
+				<td headers="day">Tuesday</td>
+				<td headers="hours">3</td>
+			</tr>
+		</tbody>
+
+		<tfoot>
+			<tr>
+				<td headers="day">Total</td>
+				<td headers="hours">7</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+
+</html>

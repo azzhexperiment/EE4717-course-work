@@ -1,0 +1,170 @@
+/*----------------------------------------------------------------------------*\
+	COMMON
+\*----------------------------------------------------------------------------*/
+
+/* Background image cropped from lecture slide */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: url("../img/bg.png") repeat;
+	font-size: 120%;
+}
+
+.wrapper {
+	width: 70%;
+	padding: 1em 5em;
+	margin: auto;
+	min-width: 800px;
+}
+
+header, footer {
+	background-color: rgb(210, 180, 140);
+}
+
+.content-wrapper {
+	background-color: rgb(226, 210, 176);
+}
+
+.navbar {
+	float: left;
+	width: 12em;
+	text-align: center;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#banner {
+	display: block;
+	margin: auto;
+}
+
+.content {
+	background-color: rgb(245, 245, 220);
+	margin-left: 12em;
+	padding: 1em;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 1em 0;
+}
+
+nav a {
+	color: rgb(121, 82, 64);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+nav a:hover, nav a:active, nav #current {
+	color: rgb(165, 131, 102);
+}
+
+footer {
+	padding: 2em;
+	margin: auto;
+	text-align: center;
+}
+
+h1 {
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	color: rgb(46, 0, 0);
+	padding: 0;
+	margin: 0;
+}
+
+
+/*----------------------------------------------------------------------------*\
+	INDEX
+\*----------------------------------------------------------------------------*/
+
+#content-left, #content-right {
+	width: 50%;
+	vertical-align: top;
+}
+
+#cafe-img {
+	max-width: 500px;
+	width: 80%;
+	margin-left: 1em;
+	padding-right: 1em;
+}
+
+/* Bullet image cropped from lecture notes */
+ul#menu {
+	list-style-image: url('/assets/img/bullet.png');
+}
+
+
+/*----------------------------------------------------------------------------*\
+	JOBS
+\*----------------------------------------------------------------------------*/
+
+table .item-name {
+	text-align: right;
+	vertical-align: top;
+	padding-left: 1em;
+	padding-right: 3em;
+}
+
+
+/*----------------------------------------------------------------------------*\
+	MENU
+\*----------------------------------------------------------------------------*/
+
+table.menu {
+	margin: auto;
+	padding: 1em;
+	width: 70%;
+	color: rgb(46, 0, 0);
+}
+
+tr:nth-of-type(odd).menu-item {
+	background-color: rgb(210, 180, 140);
+}
+
+table .drink {
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+table.menu td {
+	padding: 1em;
+}
+
+
+/*----------------------------------------------------------------------------*\
+	MUSIC
+\*----------------------------------------------------------------------------*/
+
+.music {
+	width: 70%;
+	margin: auto;
+}
+
+.month {
+	background-color: rgb(226, 210, 176);
+	font-weight: bold;
+	text-transform: uppercase;
+	color: rgb(46, 0, 0);
+}
+
+.music-content, .music-player {
+	padding: 1em;
+}
+
+.artist {
+	vertical-align: top;
+	text-align: center;
+}
+
+.artist-img {
+	width: 50%;
+}
+
+.player {
+	vertical-align: bottom;
+}
+
+td p {
+	margin: 0;
+}

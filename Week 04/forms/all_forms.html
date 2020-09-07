@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ALL FORmS</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<header>
+		<h1>All examples are here</h1>
+	</header>
+
+	<h2>Slide 20</h2>
+	<h3>Join Our Newsletter</h3>
+	<form action="show_get" method="get">
+		Email: <input type="text" name="CustEmail" id="CustEmail"><br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 22</h2>
+	<h3>Sample text Box</h3>
+	<form action="show_get" method="get">
+		Email: <input type="text" name="CustEmail" id="CustEmail" size=30
+			required placeholder="your email address"><br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 23</h2>
+	<h3>Password</h3>
+	<form action="show_post" method="post">
+		Email: <input type="password" name="mypassword" id="mypasswordid"
+			required placeholder="enter password"><br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 24a</h2>
+	<h3>checkbox</h3>
+	<form action="show_get" method="get">
+		<input type="checkbox" name="browser" value="ie"> Internet Explore<br>
+		<input type="checkbox" name="browser" value="moz" checked> Firefox<br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 24b</h2>
+	<h3>checkbox</h3>
+	<form action="show_get" method="get">
+		<input type="checkbox" name="browser[]" value="ie"> Internet Explore<br>
+		<input type="checkbox" name="browser[]" value="moz" checked> Firefox<br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 25</h2>
+	<h3>radio button</h3>
+	<form action="show_get" method="get">
+		<input type="radio" name="browser" value="ie"> Internet Explore<br>
+		<input type="radio" name="browser" value="moz" checked> Firefox<br>
+		<input type="submit">
+	</form>
+
+	<h2>Slide 26</h2>
+	<h3>text area</h3>
+	<form action="show_get" method="get">
+		<textarea type="textarea" name="comments" rows="3"
+			cols="20"> Comments : </textarea>
+		<input type="submit">
+	</form>
+
+	<h2>Slides 27 and 28</h2>
+	<h3>select</h3>
+	<form action="show_get" method="get">
+		<select size="1" name="favbrowser">
+			<option> select your favourite broweser </option>
+			<option value="ie"> Internet Explorer </option>
+			<option value="chrome"> Chrome </option>
+			<option value="safrari"> Safrari </option>
+			<input type="submit">
+	</form>
+
+	<h2>Slides 27 and 28</h2>
+	<h3>select showing all options</h3>
+	<form action="show_get" method="get">
+		<select size="4" name="favbrowser">
+			<option> select your favourite broweser </option>
+			<option value="ie"> Internet Explorer </option>
+			<option value="chrome"> Chrome </option>
+			<option value="safrari"> Safrari </option>
+			<input type="submit">
+	</form>
+
+	<h2>Slide 30a</h2>
+	<h3>text area with reset</h3>
+	<form action="show_get" method="get">
+		<textarea type="textarea" name="comments" rows="3"
+			cols="20"> Comments : </textarea>
+		<input type="submit">
+		<input type="reset">
+	</form>
+
+	<h2>Slide 30b</h2>
+	<h3>text area with reset</h3>
+	<form action="show_get" method="get">
+		<textarea type="textarea" name="comments" rows="3"
+			cols="20"> Comments : </textarea>
+		<input type="submit" value="Submit Comments">
+		<input type="reset" value="Clear Comments">
+	</form>
+
+	<h2>Slide 31</h2>
+	<h3>hidden input</h3>
+	<form action="show_get" method="get">
+		<input type="hidden" name="sendto" value="secret message">
+		<input type="submit" value="Submit it">
+	</form>
+
+	<footer>
+		<small><i>Copyright &copy; 2014 Your Name Here</i></small>
+	</footer>
+</body>
+
+</html>

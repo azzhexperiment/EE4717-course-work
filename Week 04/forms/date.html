@@ -7,12 +7,18 @@
 </head>
 
 <body>
-	<h1>Choose A Date</h1>
-	<form action="show_get.php" method="get">
-		<label for="myDate">Choose a Date</label>
-		<input type="date" name="myDate" id="myDateid">
+	<h1>Date picker</h1>
 
-		<br><br>
+	<form action="show_get.php" method="get">
+		<div>
+			<label for="myDate">Choose a Date</label>
+			<input type="date" name="myDate" id="myDateid">
+		</div>
+
+		<div>
+			<label for="myOtherDate">Choose another Date</label>
+			<input type="text" name="myOtherDate" id="myOtherDateid">
+		</div>
 
 		<input type="submit" value="Send">
 		<input type="reset">

@@ -2,7 +2,7 @@
 
 // Function called when the form is submitted.
 // Function validates data and returns a Boolean value.
-function validateForm() {
+function validateForm () {
   'use strict'
 
   // Get references to the form elements
@@ -24,7 +24,7 @@ function validateForm() {
 
 // Function called when the window has been loaded.
 // Function needs to add an event listener to the form.
-function init() {
+function init () {
   'use strict'
 
   // Confirm that document.getElementById() can be used

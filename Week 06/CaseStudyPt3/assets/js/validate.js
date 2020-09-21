@@ -116,14 +116,14 @@ function isValidName (value) {
 /**
  * The start date cannot be from today and the past.
  *
- * @param {Date} value
+ * @param {String} value
  * @returns {Boolean}
  */
 function isValidDate (value) {
-  var rule = /[a-zA-Z ]/
+  let date = Date.parse(value)
+  let today = new Date()
 
   value.trim()
 
-  value.test(rule) ? true : false
-
+  (date > today) ? true : false
 }

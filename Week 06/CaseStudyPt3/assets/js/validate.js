@@ -23,7 +23,7 @@
 const form = document.getElementById('applyJob')
 const nameContent = document.getElementById('name')
 const emailContent = document.getElementById('email')
-const dateContent = document.getElementById('date')
+const dateContent = document.getElementById('start-date')
 const submitButton = document.getElementById('submit')
 
 /**
@@ -52,7 +52,7 @@ emailContent.addEventListener('input', (event) => {
  * Listens to the <date> field and assess validity
  */
 dateContent.addEventListener('input', (event) => {
-  if (isValidDate(dateContent.value)) {
+  if (isValidStartDate(dateContent.value)) {
     dateContent.setCustomValidity('Invalid format')
   } else {
     dateContent.setCustomValidity('')
@@ -67,7 +67,7 @@ submitButton.addEventListener('click', (event) => {
 
   if (!isValidName(nameContent.value)
   || !isValidEmail(emailContent.value)
-  || !isValidDate(dateContent)) {
+  || !isValidStartDate(dateContent)) {
     alert("Fields contain invalid data!")
   } else {
     form.submit()
@@ -117,7 +117,7 @@ function isValidName (value) {
  * @param {String} value
  * @returns {Boolean}
  */
-function isValidDate (value) {
+function isValidStartDate (value) {
   let date = Date.parse(value)
   let today = new Date()
 

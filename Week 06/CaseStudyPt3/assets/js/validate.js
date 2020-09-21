@@ -3,6 +3,8 @@
  *
  * @author Zhu Zihao <zhuz0010@ntu.edu.sg>
  * @version 1.0
+ *
+ * @TODO: change event listeners to detect onblur rather than on input
  */
 
 /**
@@ -19,60 +21,56 @@
  */
 
 const form = document.getElementById('applyJob')
-const name = document.getElementById('name')
-const email = document.getElementById('email')
-const date = document.getElementById('date')
+const nameContent = document.getElementById('name')
+const emailContent = document.getElementById('email')
+const dateContent = document.getElementById('date')
+const submitButton = document.getElementById('submit')
 
 /**
  * Listens to the <name> field and assess validity
  */
-name.addEventListener('input', (event) => {
-  if (isValidName(name.value)) {
-    name.setCustomValidity('Invalid format')
+nameContent.addEventListener('input', (event) => {
+  if (isValidName(nameContent.value)) {
+    nameContent.setCustomValidity('Invalid format')
   } else {
-    name.setCustomValidity('')
+    nameContent.setCustomValidity('')
   }
 })
 
 /**
  * Listens to the <email> field and assess validity
  */
-email.addEventListener('input', (event) => {
-  if (isValidName(email.value)) {
-    email.setCustomValidity('Invalid format')
+emailContent.addEventListener('input', (event) => {
+  if (isValidEmail(emailContent.value)) {
+    emailContent.setCustomValidity('Invalid format')
   } else {
-    email.setCustomValidity('')
+    emailContent.setCustomValidity('')
   }
 })
 
 /**
  * Listens to the <date> field and assess validity
  */
-date.addEventListener('input', (event) => {
-  if (isValidName(date.value)) {
-    date.setCustomValidity('Invalid format')
+dateContent.addEventListener('input', (event) => {
+  if (isValidDate(dateContent.value)) {
+    dateContent.setCustomValidity('Invalid format')
   } else {
-    date.setCustomValidity('')
+    dateContent.setCustomValidity('')
   }
 })
 
 /**
  * Validate everything before submission just in case prof asks
  */
-form.addEventListener('submit', (event) => {
-  const test = email.value.length === 0 || emailRegExp.test(email.value);
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault()
 
-  if (!test) {
-    email.className = "invalid";
-    error.innerHTML = "I expect an e-mail, darling!";
-    error.className = "error active";
-
-    // Some legacy browsers do not support the event.preventDefault() method
-    return false;
+  if (!isValidName(nameContent.value)
+  || !isValidEmail(emailContent.value)
+  || !isValidDate(dateContent)) {
+    alert("Fields contain invalid data!")
   } else {
-    email.className = "valid";
-    error.innerHTML = "";
-    error.className = "error";
+    form.submit()
   }
 });
 

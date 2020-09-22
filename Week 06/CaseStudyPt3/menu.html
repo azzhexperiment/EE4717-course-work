@@ -39,31 +39,81 @@
 					<tr class="menu-item">
 						<td class="drink">Just Java</td>
 						<td class="description">
-							Regular house blend, decaffeinated coffee,
-							or flavor of the day.
-							<br>
-							Endless Cup $2.00
+							<div>
+								Regular house blend, decaffeinated coffee,
+								or flavor of the day.
+							</div>
+							<div>
+								<input type="radio" name="just-java"
+									id="endless-just-java" value="2.00">
+								Endless Cup $2.00
+							</div>
+						</td>
+						<td class="qty">
+							<lable for="qty-just-java">Qty:</lable>
+							<input class="qty" type="number" min="0" value="0"
+								name="qty-just-java" id="qty-just-java"></input>
+						</td>
+						<td class="subtotal">
+							$ <span id="sub-just-java"></span>
 						</td>
 					</tr>
 
 					<tr class="menu-item">
 						<td class="drink">Cafe au Lait</td>
 						<td class="description">
-							House blended coffee infused into a smooth
-							steamed milk.
-							<br>
-							Single $2.00 Double $3.00
+							<div>
+								House blended coffee infused into a smooth
+								steamed milk.
+							</div>
+							<div>
+								<input type="radio" name="cafe-au-lait"
+									id="single-cafe-au-lait" value="2.00">
+								Single $2.00
+
+								<input type="radio" name="cafe-au-lait"
+									id="double-cafe-au-lait" value="3.00">
+								Double $3.00
+							</div>
+						</td>
+						<td class="qty">
+							<lable for="qty-cafe-au-lait">Qty:</lable>
+							<input class="qty" type="number" min="0" value="0"
+								name="qty-cafe-au-lait"
+								id="qty-cafe-au-lait"></input>
+						</td>
+						<td class="subtotal">
+							$ <span id="sub-cafe-au-lait"></span>
 						</td>
 					</tr>
 
 					<tr class="menu-item">
 						<td class="drink">Iced Cappuccino</td>
 						<td class="description">
-							Sweetened espresso blended with icy-cold
-							milk and served in a
-							chilled glass.
-							<br>
-							Single $4.75 Double $5.75
+							<div>
+								Sweetened espresso blended with icy-cold
+								milk and served in a
+								chilled glass.
+							</div>
+
+							<div>
+								<input type="radio" name="iced-cappuccino"
+									id="single-iced-cappuccino" value="4.75">
+								Single $4.75
+
+								<input type="radio" name="iced-cappuccino"
+									id="double-iced-cappuccino" value="5.75">
+								Double $5.75
+							</div>
+						</td>
+						<td class="qty">
+							<lable for="qty-iced-cappuccino">Qty:</lable>
+							<input class="qty" type="number" min="0" value="0"
+								name="qty-iced-cappuccino"
+								id="qty-iced-cappuccino"></input>
+						</td>
+						<td class="subtotal">
+							$ <span id="sub-iced-cappuccino"></span>
 						</td>
 					</tr>
 				</table>

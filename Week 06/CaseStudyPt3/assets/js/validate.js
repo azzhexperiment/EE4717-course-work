@@ -12,7 +12,7 @@
  * JavaScript function.
  *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
- * @version 1.2
+ * @version 1.3
  */
 
 // Form elements
@@ -28,12 +28,15 @@ const errorName = document.getElementById('error-name')
 const errorEmail = document.getElementById('error-email')
 const errorDate = document.getElementById('error-date')
 const errorExp = document.getElementById('error-exp')
+const errorForm = document.getElementById('error-form')
 
 /**
  * Listens to the <name> field and show error message on blur, if applicable.
  */
 nameContent.addEventListener('blur', (event) => {
-  if (isValidName(nameContent.value) || nameContent.value === '') {
+  if (nameContent.value === '') {
+    errorName.textContent = 'This field is compulsory!'
+  } else if (isValidName(nameContent.value)) {
     errorName.textContent = ''
   } else {
     errorName.textContent = 'Enter characters and whitespaces only!'
@@ -44,7 +47,9 @@ nameContent.addEventListener('blur', (event) => {
  * Listens to the <email> field and show error message on blur, if applicable.
  */
 emailContent.addEventListener('blur', (event) => {
-  if (isValidEmail(emailContent.value) || emailContent.value === '') {
+  if (emailContent.value === '') {
+    errorEmail.textContent = 'This field is compulsory!'
+  } else if (isValidEmail(emailContent.value)) {
     errorEmail.textContent = ''
   } else {
     errorEmail.textContent = 'Your email contains invalid symbols!'
@@ -55,7 +60,7 @@ emailContent.addEventListener('blur', (event) => {
  * Listens to the <date> field and show error message on blur, if applicable.
  */
 dateContent.addEventListener('blur', (event) => {
-  if (isValidStartDate(dateContent.value) || dateContent.value === '') {
+  if (isValidStartDate(dateContent.value)) {
     errorDate.textContent = ''
   } else {
     errorDate.textContent = 'You cannot start before today!'
@@ -63,10 +68,13 @@ dateContent.addEventListener('blur', (event) => {
 })
 
 /**
- * Listens to the <date> field and show error message on blur, if applicable.
+ * Listens to the <experience> field and show error message on blur, if
+ * applicable.
  */
 expContent.addEventListener('blur', (event) => {
-  if (isValidStartDate(expContent.value) || expContent.value === '') {
+   if (expContent.value === '') {
+    errorExp.textContent = 'This field is compulsory!'
+  } else if (isValidExperience(expContent.value)) {
     errorExp.textContent = ''
   } else {
     errorExp.textContent = 'You need to indicate your work experience!'
@@ -79,13 +87,15 @@ expContent.addEventListener('blur', (event) => {
 submitButton.addEventListener('click', (event) => {
   event.preventDefault()
 
-  if (!isValidName(nameContent.value) ||
-  !isValidEmail(emailContent.value) ||
-  !isValidStartDate(dateContent.value)) {
-    console.log('Fields contain invalid data!')
+  if (!isValidName(nameContent.value)
+    || !isValidEmail(emailContent.value)
+    || !isValidStartDate(dateContent.value)
+    || !isValidExperience(expContent.value)) {
+    errorForm.textContent = 'Fields contain invalid data!'
   } else {
     nameContent.value = nameContent.value.trim()
     emailContent.value = emailContent.value.trim()
+    expContent.value = expContent.value.trim()
 
     form.submit()
   }
@@ -142,7 +152,7 @@ function isValidEmail (value) {
 }
 
 /**
- * Validates user 'date' field.
+ * Validates user 'date' field. Always return true for empty field.
  *
  * The start date cannot be from today and the past.
  *
@@ -161,10 +171,14 @@ function isValidEmail (value) {
  * @returns {Boolean}
  */
 function isValidStartDate (value) {
-  const date = Date.parse(value)
-  const today = new Date()
+  if (value !== '') {
+    const date = Date.parse(value)
+    const today = new Date()
 
-  return (date > today)
+    return (date > today)
+  } else {
+    return true
+  }
 }
 
 /**

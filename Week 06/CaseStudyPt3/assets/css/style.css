@@ -55,7 +55,11 @@ nav a {
 	font-weight: bold;
 }
 
-nav a:hover, nav a:active, nav #current {
+nav a:hover {
+	color: blue;
+}
+
+nav a:active, nav #current {
 	color: rgb(165, 131, 102);
 }
 

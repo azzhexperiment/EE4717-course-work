@@ -1,6 +1,9 @@
 /**
  * Validate job application form for JavaJam Coffee House.
  *
+ * Modify the 'Jobs' page so that the input data for name, email, start date
+ * and experience are validated once the data is entered into each field.
+ *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
  * @version 1.3
  */

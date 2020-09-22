@@ -1,15 +1,5 @@
 /**
- * Script - validate.js
- *
- * Modify the “Jobs” page so that the input data for name, email, start date
- * and experience are validated once the data is entered into each field.
- *
- * Modify the “Menu” page to include order quantity and options for single or
- * double shots.
- *
- * The sub-total for each order should be displayed along the total amount
- * below the sub-totals. The sub-totals and total should be computed using
- * JavaScript function.
+ * Validate job application form for JavaJam Coffee House.
  *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
  * @version 1.3

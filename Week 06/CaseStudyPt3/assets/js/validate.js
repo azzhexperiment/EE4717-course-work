@@ -99,7 +99,7 @@ submitButton.addEventListener('click', (event) => {
  * The rule required above is first constructed. User input is trimmed for
  * preceding and trailing whitespaces before being validated against the rule.
  *
- * @param {String} value - Name value from user input
+ * @param {String} value - User input name
  *
  * @constant {RegExp} rule - Regex rule for name validation
  *
@@ -127,7 +127,7 @@ function isValidName (value) {
  * The rule required above is first constructed. User input is trimmed for
  * preceding and trailing whitespaces before being validated against the rule.
  *
- * @param {String} value - Email value from user input
+ * @param {String} value - User input email
  *
  * @constant {RegExp} rule - Regex rule for email validation
  *
@@ -153,10 +153,10 @@ function isValidEmail (value) {
  * Note that the parsed date is assumed to be at 0000 hrs while the generated
  * date is accurate to the current time in milliseconds.
  *
- * @param {String} value - Date value from user input
+ * @param {String} value - User input date
  *
- * @constant {Date} date - Date value parsed as Date object
- * @constant {Date} today - Date object for current system datetime
+ * @constant {Date} date - User input date parsed as Date object
+ * @constant {Date} today - Current system datetime
  *
  * @returns {Boolean}
  */
@@ -172,16 +172,10 @@ function isValidStartDate (value) {
  *
  * Experience cannot be empty.
  *
- * @param {String} value - Experience value from user input
- *
- * @constant {RegExp} date - Date value parsed as Date object
- * @constant {RegExp} today - Date object for current system datetime
+ * @param {String} value - User input experience
  *
  * @returns {Boolean}
  */
-function isValidStartDate (value) {
-  const date = Date.parse(value)
-  const today = new Date()
-
-  return (date > today)
+function isValidExperience (value) {
+  return (value !== '')
 }

@@ -43,7 +43,7 @@
 					your application. Required fields are marked with an
 					asterisk *</p>
 
-				<form action="show_post.php" method="post" id="applyJob">
+				<form action="show_post.php" method="post" id="apply-job">
 					<table class="contact">
 						<tr class="contact-item">
 							<td class="item-name">
@@ -51,6 +51,8 @@
 							</td>
 							<td class="input-field">
 								<input type="text" name="name" id="name">
+								<br>
+								<span class="error" id="error-name"></span>
 							</td>
 						</tr>
 
@@ -60,6 +62,8 @@
 							</td>
 							<td class="input-field">
 								<input type="email" name="email" id="email">
+								<br>
+								<span class="error" id="error-email"></span>
 							</td>
 						</tr>
 
@@ -70,6 +74,8 @@
 							<td class="input-field">
 								<input type="date" name="start-date"
 									id="start-date">
+								<br>
+								<span class="error" id="error-date"></span>
 							</td>
 						</tr>
 
@@ -86,7 +92,7 @@
 
 					<br>
 
-					<input type="submit" value="Apply Now" id="submit">
+					<input type="submit" value="Apply Now" id="submit-btn">
 				</form>
 			</div>
 

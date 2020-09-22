@@ -1,16 +1,15 @@
 /**
  * Script - validate.js
  *
- * Modify the “Jobs” page so that
- * the input data for name, email, start date and experience
- * are validated once the data is entered into each field.
+ * Modify the “Jobs” page so that the input data for name, email, start date
+ * and experience are validated once the data is entered into each field.
  *
- * Modify the “Menu” page to include order quantity
- * and options for single or double shots.
+ * Modify the “Menu” page to include order quantity and options for single or
+ * double shots.
  *
- * The sub-total for each order should be displayed
- * along the total amount below the sub-totals.
- * The sub-totals and total should be computed using JavaScript function.
+ * The sub-total for each order should be displayed along the total amount
+ * below the sub-totals. The sub-totals and total should be computed using
+ * JavaScript function.
  *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
  * @version 1.2
@@ -21,58 +20,56 @@ const form = document.getElementById('apply-job')
 const nameContent = document.getElementById('name')
 const emailContent = document.getElementById('email')
 const dateContent = document.getElementById('start-date')
+const expContent = document.getElementById('experience')
 const submitButton = document.getElementById('submit-btn')
 
 // Error messages
 const errorName = document.getElementById('error-name')
 const errorEmail = document.getElementById('error-email')
 const errorDate = document.getElementById('error-date')
+const errorExp = document.getElementById('error-exp')
 
 /**
- * Listens to the <name> field and assess validity
+ * Listens to the <name> field and show error message on blur, if applicable.
  */
 nameContent.addEventListener('blur', (event) => {
-  if (isValidName(nameContent.value)) {
-    console.log(nameContent.value)
-    console.log('Valid name format')
-
-    errorName.textContext = ''
-    nameContent.setCustomValidity('')
+  if (isValidName(nameContent.value) || nameContent.value === '') {
+    errorName.textContent = ''
   } else {
-    errorName.textContext = 'Enter characters and whitespaces only!'
-    nameContent.setCustomValidity('INVALID name format!')
+    errorName.textContent = 'Enter characters and whitespaces only!'
   }
 })
 
 /**
- * Listens to the <email> field and assess validity
+ * Listens to the <email> field and show error message on blur, if applicable.
  */
 emailContent.addEventListener('blur', (event) => {
-  if (isValidEmail(emailContent.value)) {
-    console.log(emailContent.value)
-    console.log('Valid email format')
-
-    errorEmail.textContext = ''
-    emailContent.setCustomValidity('')
+  if (isValidEmail(emailContent.value) || emailContent.value === '') {
+    errorEmail.textContent = ''
   } else {
-    errorEmail.textContext = 'Your email contains invalid symbols!'
-    emailContent.setCustomValidity('INVALID email format!')
+    errorEmail.textContent = 'Your email contains invalid symbols!'
   }
 })
 
 /**
- * Listens to the <date> field and assess validity
+ * Listens to the <date> field and show error message on blur, if applicable.
  */
 dateContent.addEventListener('blur', (event) => {
-  if (isValidStartDate(dateContent.value)) {
-    console.log(dateContent.value)
-    console.log('Valid starting date')
-
-    errorDate.textContext = ''
-    dateContent.setCustomValidity('')
+  if (isValidStartDate(dateContent.value) || dateContent.value === '') {
+    errorDate.textContent = ''
   } else {
-    errorDate.textContext = 'You cannot start before today!'
-    dateContent.setCustomValidity('INVALID starting date!')
+    errorDate.textContent = 'You cannot start before today!'
+  }
+})
+
+/**
+ * Listens to the <date> field and show error message on blur, if applicable.
+ */
+expContent.addEventListener('blur', (event) => {
+  if (isValidStartDate(expContent.value) || expContent.value === '') {
+    errorExp.textContent = ''
+  } else {
+    errorExp.textContent = 'You need to indicate your work experience!'
   }
 })
 
@@ -157,6 +154,25 @@ function isValidEmail (value) {
  * date is accurate to the current time in milliseconds.
  *
  * @param {String} value - Date value from user input
+ *
+ * @constant {Date} date - Date value parsed as Date object
+ * @constant {Date} today - Date object for current system datetime
+ *
+ * @returns {Boolean}
+ */
+function isValidStartDate (value) {
+  const date = Date.parse(value)
+  const today = new Date()
+
+  return (date > today)
+}
+
+/**
+ * Validates user 'experience' field.
+ *
+ * Experience cannot be empty.
+ *
+ * @param {String} value - Experience value from user input
  *
  * @constant {RegExp} date - Date value parsed as Date object
  * @constant {RegExp} today - Date object for current system datetime

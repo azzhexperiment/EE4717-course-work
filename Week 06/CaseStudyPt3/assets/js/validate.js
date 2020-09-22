@@ -80,10 +80,10 @@ expContent.addEventListener('blur', (event) => {
 submitButton.addEventListener('click', (event) => {
   event.preventDefault()
 
-  if (!isValidName(nameContent.value)
-    || !isValidEmail(emailContent.value)
-    || !isValidStartDate(dateContent.value)
-    || !isValidExperience(expContent.value)) {
+  if (!isValidName(nameContent.value) ||
+    !isValidEmail(emailContent.value) ||
+    !isValidStartDate(dateContent.value) ||
+    !isValidExperience(expContent.value)) {
     errorForm.textContent = 'Fields contain invalid data!'
   } else {
     nameContent.value = nameContent.value.trim()

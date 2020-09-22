@@ -65,7 +65,7 @@ dateContent.addEventListener('blur', (event) => {
  * applicable.
  */
 expContent.addEventListener('blur', (event) => {
-   if (expContent.value === '') {
+  if (expContent.value === '') {
     errorExp.textContent = 'This field is compulsory!'
   } else if (isValidExperience(expContent.value)) {
     errorExp.textContent = ''

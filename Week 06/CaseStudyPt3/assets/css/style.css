@@ -149,6 +149,17 @@ table.menu td {
 	padding: 1em;
 }
 
+input.qty {
+	width: 5em;
+}
+
+td.subtotal {
+	width: 5em;
+}
+
+td.total {
+	text-align: right;
+}
 
 /*----------------------------------------------------------------------------*\
 	MUSIC

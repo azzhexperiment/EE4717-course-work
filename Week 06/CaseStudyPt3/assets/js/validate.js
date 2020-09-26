@@ -116,7 +116,7 @@ function isValidName (value) {
   return (rule.test(value))
 }
 
-/**
+/** 
  * Validates user 'email' field.
  *
  * The email field contains a user name part follows by "@" and a domain name
@@ -137,7 +137,7 @@ function isValidName (value) {
  * @returns {Boolean}
  */
 function isValidEmail (value) {
-  const rule = /^[\w.-]+@([\w-]+\.){1,3}[a-zA-Z]{2,3}$/
+  const rule = /^[\w][\w.-]*@([\w][\w-]*\.){1,3}[a-zA-Z]{2,3}$/
 
   value.trim()
 

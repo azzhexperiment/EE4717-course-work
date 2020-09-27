@@ -8,6 +8,8 @@
  * @version 1.3
  */
 
+'use strict'
+
 // Form elements
 const form = document.getElementById('apply-job')
 const nameContent = document.getElementById('name')

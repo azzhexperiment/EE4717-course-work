@@ -6,8 +6,10 @@
  * JavaScript function.
  *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
- * @version 1.0
+ * @version 1.1
  */
+
+'use strict'
 
 // Form
 const orderForm = document.getElementById('order-form')
@@ -50,18 +52,20 @@ orderForm.addEventListener('change', () => {
     subIcedCappuccino.textContent = calcSubtotal(priceSelectedIcedCappuccino, qtyOrderedIcedCappuccino)
   }
 
-  totalCost.textContent = parseFloat(subJustJava.textContent) +
+  totalCost.textContent = (
+    parseFloat(subJustJava.textContent) +
     parseFloat(subCafeAuLait.textContent) +
     parseFloat(subIcedCappuccino.textContent)
+  ).toFixed(2)
 })
 
 /**
  * @returns {Number}
  */
 function getSelectedCafeAuLaitPrice () {
-  for (let i = 0; i < orderForm.cafeAuLait.length; i++) {
-    if (orderForm.cafeAuLait[i].checked) {
-      return (parseFloat(orderForm.cafeAuLait[i].value))
+  for (let i = 0; i < orderForm.cafe_au_lait_price.length; i++) {
+    if (orderForm.cafe_au_lait_price[i].checked) {
+      return (parseFloat(orderForm.cafe_au_lait_price[i].value))
     }
   }
 }
@@ -70,19 +74,21 @@ function getSelectedCafeAuLaitPrice () {
  * @returns {Number}
  */
 function getSelectedIcedCappuccinoPrice () {
-  for (let i = 0; i < orderForm.icedCappuccino.length; i++) {
-    if (orderForm.icedCappuccino[i].checked) {
-      return (parseFloat(orderForm.icedCappuccino[i].value))
+  for (let i = 0; i < orderForm.iced_cappuccino_price.length; i++) {
+    if (orderForm.iced_cappuccino_price[i].checked) {
+      return (parseFloat(orderForm.iced_cappuccino_price[i].value))
     }
   }
 }
 
 /**
+ * Returns calculated subtotal given price and quantity of order.
+ *
  * @param {Number} price - Price of selected option
  * @param {Number} qty - Quantity of drinks for order
  *
  * @returns {Number}
  */
 function calcSubtotal (price, qty) {
-  return (price * qty)
+  return (price * qty).toFixed(2)
 }

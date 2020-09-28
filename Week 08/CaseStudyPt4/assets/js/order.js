@@ -11,8 +11,9 @@
 
 'use strict'
 
-// Form
+// Form elements
 const orderForm = document.getElementById('order-form')
+const submitBtn = document.getElementById('submit-btn')
 
 // Radio elements
 const endlessJustJava = document.getElementById('endless-just-java')
@@ -33,7 +34,7 @@ const totalCost = document.getElementById('total-cost')
 /**
  * Calculate total & subtotals of drinks ordered on the fly.
  */
-orderForm.addEventListener('change', () => {
+orderForm.addEventListener('change', (event) => {
   if (endlessJustJava.checked) {
     const priceEndlessJustJava = parseFloat(endlessJustJava.value)
     const qtyOrderedJustJava = parseInt(qtyJustJava.value)
@@ -57,6 +58,16 @@ orderForm.addEventListener('change', () => {
     parseFloat(subCafeAuLait.textContent) +
     parseFloat(subIcedCappuccino.textContent)
   ).toFixed(2)
+})
+
+/**
+ * Submits form and alert user.
+ */
+submitBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  orderForm.submit()
+  window.alert('Order placed!')
 })
 
 /**

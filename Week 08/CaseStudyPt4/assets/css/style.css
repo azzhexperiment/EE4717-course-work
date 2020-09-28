@@ -149,11 +149,7 @@ table.menu td {
 	padding: 1em;
 }
 
-input.qty {
-	width: 5em;
-}
-
-td.subtotal {
+input.qty, td.subtotal, td.price{
 	width: 5em;
 }
 

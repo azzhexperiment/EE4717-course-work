@@ -46,17 +46,18 @@ if ($db->connect_errno) {
 }
 
 // Insert new sales info
-$query = 'INSERT INTO sales VALUES (DEFAULT,
-	"' . $just_java_qty            . '",
-	"' . $just_java_price          . '",
-	"' . $just_java_subtotal       . '",
-	"' . $cafe_au_lait_qty         . '",
-	"' . $cafe_au_lait_price       . '",
-	"' . $cafe_au_lait_subtotal    . '",
-	"' . $iced_cappuccino_qty      . '",
-	"' . $iced_cappuccino_price    . '",
-	"' . $iced_cappuccino_subtotal . '",
-	"' . $total                    . '"
+$query = 'INSERT INTO sales
+	VALUES (DEFAULT,
+		"' . $just_java_qty            . '",
+		"' . $just_java_price          . '",
+		"' . $just_java_subtotal       . '",
+		"' . $cafe_au_lait_qty         . '",
+		"' . $cafe_au_lait_price       . '",
+		"' . $cafe_au_lait_subtotal    . '",
+		"' . $iced_cappuccino_qty      . '",
+		"' . $iced_cappuccino_price    . '",
+		"' . $iced_cappuccino_subtotal . '",
+		"' . $total                    . '"
 )';
 
 $db->query($query);

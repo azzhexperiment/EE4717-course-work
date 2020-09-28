@@ -8,6 +8,8 @@
  * @version 1.0
  */
 
+'use strict'
+
 const form = document.getElementById('update-prices')
 const submit = document.getElementById('submit')
 
@@ -15,6 +17,5 @@ submit.addEventListener('click', (event) => {
   event.preventDefault()
 
   form.submit()
-
-  location.reload()
+  window.alert('Price updated!')
 })

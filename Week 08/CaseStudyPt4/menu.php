@@ -154,7 +154,7 @@ $prices = $result->fetch_object();
 							</tr>
 							<tr>
 								<td class="total" colspan="4">
-									<input type="submit" value="Place order">
+									<input type="submit" value="Place order" id="submit-btn">
 								</td>
 							</tr>
 						</tfoot>

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Get user input for an order and insert into database for sales entry.
+ *
+ * @todo Perform get_magic_quotes_gpc() check
+ * @todo Escape any user sql injection commands
+ */
+
 $just_java_qty      = intval($_POST['just_java_qty']);
 $just_java_price    = floatval($_POST['just_java_price']);
 $just_java_subtotal = $just_java_qty * $just_java_price;

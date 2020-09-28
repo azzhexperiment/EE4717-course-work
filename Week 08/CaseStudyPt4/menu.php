@@ -48,6 +48,11 @@ $prices = $result->fetch_object();
 						<li><a href="menu.php" id="current">Menu</a></li>
 						<li><a href="music.html">Music</a></li>
 						<li><a href="jobs.html">Jobs</a></li>
+						<li>&nbsp;</li>
+						<li>&nbsp;</li>
+						<li><u>Admin Pages</u></li>
+						<li><a href="product-price-update.php">Product Price Update</a></li>
+						<li><a href="daily-sales-report.php">Daily Sales Report</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -56,7 +61,7 @@ $prices = $result->fetch_object();
 			<div class="content" id="content-index">
 				<h1>Coffee at JavaJam</h1>
 
-				<form id="order-form" action="order.php" method="POST" target="_blank">
+				<form id="order-form" action="assets/php/order.php" method="POST" target="_blank">
 					<table class="menu">
 						<thead>
 							<tr>

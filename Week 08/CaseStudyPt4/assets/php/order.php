@@ -5,21 +5,14 @@
  *
  * @todo Perform get_magic_quotes_gpc() check
  * @todo Escape any user sql injection commands
+ *
+ * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
+ * @version 1.2.0
  */
 
-$just_java_qty      = intval($_POST['just_java_qty']);
-$just_java_price    = floatval($_POST['just_java_price']);
-$just_java_subtotal = $just_java_qty * $just_java_price;
-
-$cafe_au_lait_qty      = intval($_POST['cafe_au_lait_qty']);
-$cafe_au_lait_price    = floatval($_POST['cafe_au_lait_price']);
-$cafe_au_lait_subtotal = $cafe_au_lait_qty * $cafe_au_lait_price;
-
-$iced_cappuccino_qty      = intval($_POST['iced_cappuccino_qty']);
-$iced_cappuccino_price    = floatval($_POST['iced_cappuccino_price']);
-$iced_cappuccino_subtotal = $iced_cappuccino_qty * $iced_cappuccino_price;
-
-$total = $just_java_subtotal + $cafe_au_lait_subtotal + $iced_cappuccino_subtotal;
+// Just Java is omitted since relevant fields will default to 0
+$cafeAuLait     = $_POST['cafe_au_lait'];
+$icedCappuccino = $_POST['iced_cappuccino'];
 
 $db = new mysqli('localhost', 'f37ee', 'f37ee', 'f37ee');
 
@@ -29,22 +22,65 @@ if ($db->connect_errno) {
 	exit();
 }
 
+$getPrices = 'SELECT * FROM prices';
+$prices = $db->query($getPrices)->fetch_object();
+
+$just_java_qty      = intval($_POST['just_java_qty']);
+$just_java_price    = $prices->$just_java_endless;
+$just_java_subtotal = $just_java_qty * $just_java_price;
+
+if (isset($cafeAuLait)) {
+	if ($cafeAuLait === 'cafe_au_lait_single') {
+		$cafe_au_lait_single_qty      = intval($_POST['cafe_au_lait_qty']);
+		$cafe_au_lait_single_price    = $prices->$cafe_au_lait_single;
+		$cafe_au_lait_single_subtotal = $cafe_au_lait_single_qty * $cafe_au_lait_single_price;
+	} elseif ($cafeAuLait === 'cafe_au_lait_double') {
+		$cafe_au_lait_double_qty      = intval($_POST['cafe_au_lait_qty']);
+		$cafe_au_lait_double_price    = $prices->$cafe_au_lait_double;
+		$cafe_au_lait_double_subtotal = $cafe_au_lait_double_qty * $cafe_au_lait_double_price;
+	}
+}
+
+if (isset($icedCappuccino)) {
+	if ($icedCappuccino === 'iced_cappuccino_single') {
+		$iced_cappuccino_single_qty      = intval($_POST['iced_cappuccino_qty']);
+		$iced_cappuccino_single_price    = $prices->$iced_cappuccino_single;
+		$iced_cappuccino_single_subtotal = $iced_cappuccino_single_qty * $iced_cappuccino_single_price;
+	} elseif ($icedCappuccino === 'iced_cappuccino_double') {
+		$iced_cappuccino_double_qty      = intval($_POST['iced_cappuccino_qty']);
+		$iced_cappuccino_double_price    = $prices->$iced_cappuccino_double;
+		$iced_cappuccino_double_subtotal = $iced_cappuccino_double_qty * $iced_cappuccino_double_price;
+	}
+}
+
+$total = $just_java_subtotal +
+	$cafe_au_lait_single_subtotal +
+	$cafe_au_lait_double_subtotal +
+	$iced_cappuccino_single_subtotal +
+	$iced_cappuccino_double_subtotal;
+
 // Insert new sales info
-$query = 'INSERT INTO sales
+$insertNewSalesEntry = 'INSERT INTO sales
 	VALUES (DEFAULT,
-		"' . $just_java_qty            . '",
-		"' . $just_java_price          . '",
-		"' . $just_java_subtotal       . '",
-		"' . $cafe_au_lait_qty         . '",
-		"' . $cafe_au_lait_price       . '",
-		"' . $cafe_au_lait_subtotal    . '",
-		"' . $iced_cappuccino_qty      . '",
-		"' . $iced_cappuccino_price    . '",
-		"' . $iced_cappuccino_subtotal . '",
-		"' . $total                    . '"
+		"' . $just_java_qty                   . '",
+		"' . $just_java_price                 . '",
+		"' . $just_java_subtotal              . '",
+		"' . $cafe_au_lait_single_qty         . '",
+		"' . $cafe_au_lait_single_qty         . '",
+		"' . $cafe_au_lait_single_price       . '",
+		"' . $cafe_au_lait_double_price       . '",
+		"' . $cafe_au_lait_double_subtotal    . '",
+		"' . $cafe_au_lait_double_subtotal    . '",
+		"' . $iced_cappuccino_single_qty      . '",
+		"' . $iced_cappuccino_single_qty      . '",
+		"' . $iced_cappuccino_single_price    . '",
+		"' . $iced_cappuccino_double_price    . '",
+		"' . $iced_cappuccino_double_subtotal . '",
+		"' . $iced_cappuccino_double_subtotal . '",
+		"' . $total                           . '"
 )';
 
-$db->query($query);
+$db->query($insertNewSalesEntry);
 
 $db->close();
 

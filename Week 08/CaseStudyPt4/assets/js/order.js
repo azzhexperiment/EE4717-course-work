@@ -6,7 +6,7 @@
  * JavaScript function.
  *
  * @author Zhu Zihao <zhuz0010@e.ntu.edu.sg>
- * @version 1.1.1
+ * @version 1.1.2
  */
 
 'use strict'
@@ -36,7 +36,7 @@ const totalCost = document.getElementById('total-cost')
  */
 orderForm.addEventListener('change', (event) => {
   if (endlessJustJava.checked) {
-    const priceEndlessJustJava = parseFloat(endlessJustJava.dataset.value)
+    const priceEndlessJustJava = parseFloat(endlessJustJava.dataset.price)
     const qtyOrderedJustJava = parseInt(qtyJustJava.value)
     subJustJava.textContent = calcSubtotal(priceEndlessJustJava, qtyOrderedJustJava)
   }
@@ -77,7 +77,7 @@ submitBtn.addEventListener('click', (event) => {
 function getSelectedCafeAuLaitPrice () {
   for (let i = 0; i < orderForm.cafe_au_lait_price.length; i++) {
     if (orderForm.cafe_au_lait_price[i].checked) {
-      return (parseFloat(orderForm.cafe_au_lait_price[i].dataset.value))
+      return (parseFloat(orderForm.cafe_au_lait_price[i].dataset.price))
     }
   }
 }
@@ -88,7 +88,7 @@ function getSelectedCafeAuLaitPrice () {
 function getSelectedIcedCappuccinoPrice () {
   for (let i = 0; i < orderForm.iced_cappuccino_price.length; i++) {
     if (orderForm.iced_cappuccino_price[i].checked) {
-      return (parseFloat(orderForm.iced_cappuccino_price[i].dataset.value))
+      return (parseFloat(orderForm.iced_cappuccino_price[i].dataset.price))
     }
   }
 }

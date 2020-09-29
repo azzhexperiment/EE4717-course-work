@@ -24,25 +24,63 @@ if ($db->connect_errno) {
 	exit();
 }
 
-// Get current sales
-$query = 'SELECT * FROM sales';
+// Getter queries for sales data
+$get = [
+	// Amount
+	'revenueJustJava'              => 'SELECT SUM(just_java_subtotal)              AS revenue FROM sales',
+	'revenueCafeAuLaitSingle'      => 'SELECT SUM(cafe_au_lait_single_subtotal)    AS revenue FROM sales',
+	'revenueCafeAuLaitDouble'      => 'SELECT SUM(cafe_au_lait_double_subtotal)    AS revenue FROM sales',
+	'revenueIcedCappuccinoSingle'  => 'SELECT SUM(iced_cappuccino_single_subtotal) AS revenue FROM sales',
+	'revenueIcedCappuccinoDouble'  => 'SELECT SUM(iced_cappuccino_double_subtotal) AS revenue FROM sales',
 
-$result = $db->query($query);
-$sales = $result->fetch_object();
+	// Qty
+	'totalQtyJustJava'             => 'SELECT SUM(just_java_qty)              AS qty FROM sales',
+	'totalQtyCafeAuLaitSingle'     => 'SELECT SUM(cafe_au_lait_single_qty)    AS qty FROM sales',
+	'totalQtyCafeAuLaitDouble'     => 'SELECT SUM(cafe_au_lait_double_qty)    AS qty FROM sales',
+	'totalQtyIcedCappuccinoSingle' => 'SELECT SUM(iced_cappuccino_single_qty) AS qty FROM sales',
+	'totalQtyIcedCappuccinoDouble' => 'SELECT SUM(iced_cappuccino_double_qty) AS qty FROM sales',
 
-$revenueJustJava = $sales;
-$revenueCafeAuLaitSingle = $sales->x;
-$revenueCafeAuLaitDouble = $sales->x;
-$revenueIcedCappuccinoSingle = $sales->x;
-$revenueIcedCappuccinoDouble = $sales->x;
+	// Total sales
+	'totalRevenue'                 => 'SELECT SUM(total) AS total FROM sales',
+];
 
-$totalRevenue = 1;
+// Get revenue from each product
+$revenueJustJava              = $db->query($get['revenueJustJava'])->fetch_object();
+$revenueCafeAuLaitSingle      = $db->query($get['revenueCafeAuLaitSingle'])->fetch_object();
+$revenueCafeAuLaitDouble      = $db->query($get['revenueCafeAuLaitDouble'])->fetch_object();
+$revenueIcedCappuccinoSingle  = $db->query($get['revenueIcedCappuccinoSingle'])->fetch_object();
+$revenueIcedCappuccinoDouble  = $db->query($get['revenueIcedCappuccinoDouble'])->fetch_object();
+$totalRevenue                 = $db->query($get['totalRevenue'])->fetch_object();
 
-$qtyJustJava = $sales;
-$qtyCafeAuLaitSingle = $sales->x;
-$qtyCafeAuLaitDouble = $sales->x;
-$qtyIcedCappuccinoSingle = $sales->x;
-$qtyIcedCappuccinoDouble = $sales->x;
+// Get qty sold for each product
+$totalQtyJustJava             = $db->query($get['totalQtyJustJava'])->fetch_object();
+$totalQtyCafeAuLaitSingle     = $db->query($get['totalQtyCafeAuLaitSingle'])->fetch_object();
+$totalQtyCafeAuLaitDouble     = $db->query($get['totalQtyCafeAuLaitDouble'])->fetch_object();
+$totalQtyIcedCappuccinoSingle = $db->query($get['totalQtyIcedCappuccinoSingle'])->fetch_object();
+$totalQtyIcedCappuccinoDouble = $db->query($get['totalQtyIcedCappuccinoDouble'])->fetch_object();
+
+// Get best seller
+$revenues = [
+	'Just Java (endless cup)'       => $revenueJustJava->revenue,
+	'Cafe au Lait (single shot)'    => $revenueCafeAuLaitSingle->revenue,
+	'Cafe au Lait (double shot)'    => $revenueCafeAuLaitDouble->revenue,
+	'Iced Cappuccino (single shot)' => $revenueIcedCappuccinoSingle->revenue,
+	'Iced Cappuccino (double shot)' => $revenueIcedCappuccinoDouble->revenue,
+];
+
+rsort($revenues);
+
+if ($revenues[0] === $revenueJustJava->revenue) {
+	$bestSeller = 'Just Java (endless cup)';
+} elseif ($revenues[0] === $revenueCafeAuLaitSingle->revenue) {
+	$bestSeller = 'Cafe au Lait (single shot)';
+} elseif ($revenues[0] === $revenueCafeAuLaitDouble->revenue) {
+	$bestSeller = 'Cafe au Lait (double shot)';
+} elseif ($revenues[0] === $revenueIcedCappuccinoSingle->revenue) {
+	$bestSeller = 'Iced Cappuccino (single shot)';
+} elseif ($revenues[0] === $revenueIcedCappuccinoDouble->revenue) {
+	$bestSeller = 'Iced Cappuccino (double shot)';
+}
 
 ?>
 
@@ -59,7 +97,6 @@ $qtyIcedCappuccinoDouble = $sales->x;
 
 <body>
 	<div class="wrapper">
-
 		<!-- Header -->
 		<header>
 			<img id="banner" src="assets/img/banner.png" alt="JavaJam Coffee House">
@@ -86,27 +123,7 @@ $qtyIcedCappuccinoDouble = $sales->x;
 			<!-- Content -->
 			<div class="content" id="content-index">
 
-				<?php if ($reportType === 'dollarSales') {
-					// can use <? php if (): ? >
-
-					/**
-					 * -------------------------------------------
-					 * | ITEM                             | $$$$ |
-					 * |------------------------------------------
-					 * | Just Java (Endless Cup)          | $amt |
-					 * |------------------------------------------
-					 * | Cafe au Lait (single shot)       | $amt |
-					 * |------------------------------------------
-					 * | Cafe au Lait (double shot)       | $amt |
-					 * |------------------------------------------
-					 * | Iced Cappuccino (single shot)    | $amt |
-					 * |------------------------------------------
-					 * | Iced Cappuccino (double shot)    | $amt |
-					 * |------------------------------------------
-					 * | TOTAL                            | $AMT |
-					 * |------------------------------------------
-					 */
-				?>
+				<?php if ($reportType === 'dollarSales') : ?>
 					<h1>Total dollar sales by products</h1>
 
 					<table class="report" id="report--dollar-sales">
@@ -118,84 +135,100 @@ $qtyIcedCappuccinoDouble = $sales->x;
 						</thead>
 
 						<tbody>
-							<tr>
-								<td>Just Java (Endless Cup)</td>
-								<td><?= $revenueJustJava ?></td>
+							<tr class="menu-item">
+								<td>Just Java (endless cup)</td>
+								<td>
+									$ <span class="total">
+										<?= $revenueJustJava->revenue ?>
+									</span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Cafe au Lait (single shot)</td>
-								<td><?= $revenueCafeAuLaitSingle ?></td>
+								<td>
+									$ <span class="total">
+										<?= $revenueCafeAuLaitSingle->revenue ?>
+									</span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Cafe au Lait (double shot)</td>
-								<td><?= $revenueCafeAuLaitDouble ?></td>
+								<td>
+									$ <span class="total">
+										<?= $revenueCafeAuLaitDouble->revenue ?>
+									</span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Iced Cappuccino (single shot)</td>
-								<td><?= $revenueIcedCappuccinoSingle ?></td>
+								<td>
+									$ <span class="total">
+										<?= $revenueIcedCappuccinoSingle->revenue ?>
+									</span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Iced Cappuccino (double shot)</td>
-								<td><?= $revenueIcedCappuccinoDouble ?></td>
+								<td>
+									$ <span class="total">
+										<?= $revenueIcedCappuccinoDouble->revenue ?>
+									</span>
+								</td>
 							</tr>
 						</tbody>
 
 						<tfoot>
 							<tr>
 								<td>TOTAL SALES</td>
-								<td><?= $totalRevenue ?></td>
+								<td>
+									$ <span class="total">
+										<?= $totalRevenue->total ?>
+									</span>
+								</td>
 							</tr>
 						</tfoot>
 					</table>
-				<?php } ?>
+				<?php endif ?>
 
-				<?php if ($reportType === 'salesQty') {
-					/**
-					 * -------------------------------------------
-					 * | ITEM                           |  Qty   |
-					 * |------------------------------------------
-					 * | Just Java (Endless Cup)        |  $qty  |
-					 * |------------------------------------------
-					 * | Cafe au Lait (single shot)     |  $qty  |
-					 * |------------------------------------------
-					 * | Cafe au Lait (double shot)     |  $qty  |
-					 * |------------------------------------------
-					 * | Iced Cappuccino (single shot)  |  $qty  |
-					 * |------------------------------------------
-					 * | Iced Cappuccino (double shot)  |  $qty  |
-					 * |------------------------------------------
-					 * | TOP SELLING                    |  ITEM  |
-					 * |------------------------------------------
-					 */
-				?>
+				<?php if ($reportType === 'salesQty') : ?>
 					<table class="report" id="report--sales-qty">
 						<thead>
 							<tr>
 								<th>Product</th>
-								<th>Qty</th>
+								<th>Qty Sold</th>
 							</tr>
 						</thead>
 
 						<tbody>
-							<tr>
+							<tr class="menu-item">
 								<td>Just Java (Endless Cup)</td>
-								<td><?= $qtyJustJava ?></td>
+								<td>
+									<span class="total"><?= $totalQtyJustJava->qty ?><span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Cafe au Lait (single shot)</td>
-								<td><?= $qtyCafeAuLaitSingle ?></td>
+								<td>
+									<span class="total"><?= $totalQtyCafeAuLaitSingle->qty ?><span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Cafe au Lait (double shot)</td>
-								<td><?= $qtyCafeAuLaitDouble ?></td>
+								<td>
+									<span class="total"><?= $totalQtyCafeAuLaitDouble->qty ?><span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Iced Cappuccino (single shot)</td>
-								<td><?= $qtyIcedCappuccinoSingle ?></td>
+								<td>
+									<span class="total"><?= $totalQtyIcedCappuccinoSingle->qty ?><span>
+								</td>
 							</tr>
-							<tr>
+							<tr class="menu-item">
 								<td>Iced Cappuccino (double shot)</td>
-								<td><?= $qtyIcedCappuccinoDouble ?></td>
+								<td>
+									<span class="total"><?= $totalQtyIcedCappuccinoDouble->qty ?><span>
+								</td>
 							</tr>
 						</tbody>
 
@@ -206,8 +239,9 @@ $qtyIcedCappuccinoDouble = $sales->x;
 							</tr>
 						</tfoot>
 					</table>
-				<?php } ?>
+				<?php endif ?>
 
+				<div id="spacer"></div>
 			</div>
 
 		</div>
@@ -227,3 +261,9 @@ $qtyIcedCappuccinoDouble = $sales->x;
 </body>
 
 </html>
+
+<?php
+
+$db->close();
+
+?>

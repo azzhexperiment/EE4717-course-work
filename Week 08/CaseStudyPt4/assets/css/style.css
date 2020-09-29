@@ -202,3 +202,7 @@ td p {
 #spacer {
 	height: 10em;
 }
+
+table.report, table.report th, table.report td {
+	border: 1px solid;
+}

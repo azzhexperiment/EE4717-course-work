@@ -10,10 +10,8 @@ if ($db->connect_errno) {
 }
 
 // Get the latest prices
-$query = 'SELECT * FROM prices';
-
-$result = $db->query($query);
-$prices = $result->fetch_object();
+$getPrices = 'SELECT * FROM prices';
+$prices = $db->query($getPrices)->fetch_object();
 
 ?>
 
@@ -81,7 +79,7 @@ $prices = $result->fetch_object();
 									</div>
 									<div>
 										<label for="endless-just-java">
-											<input type="radio" name="just_java_price" id="endless-just-java" value="<?= $prices->just_java_endless ?>">
+											<input type="radio" name="just_java" id="endless-just-java" value="just_java_endless" data-price="<?= $prices->just_java_endless ?>">
 											Endless Cup $<?= $prices->just_java_endless ?>
 										</label>
 									</div>
@@ -102,11 +100,11 @@ $prices = $result->fetch_object();
 									</div>
 									<div>
 										<label for="single-cafe-au-lait">
-											<input type="radio" name="cafe_au_lait_price" id="single-cafe-au-lait" value="<?= $prices->cafe_au_lait_single ?>">
+											<input type="radio" name="cafe_au_lait" id="single-cafe-au-lait" value="cafe_au_lait_single" data-price="<?= $prices->cafe_au_lait_single ?>">
 											Single $<?= $prices->cafe_au_lait_single ?>
 										</label>
 										<label for="double-cafe-au-lait">
-											<input type="radio" name="cafe_au_lait_price" id="double-cafe-au-lait" value="<?= $prices->cafe_au_lait_double ?>">
+											<input type="radio" name="cafe_au_lait" id="double-cafe-au-lait" value="cafe_au_lait_double" data-price="<?= $prices->cafe_au_lait_double ?>">
 											Double $<?= $prices->cafe_au_lait_double ?>
 										</label>
 									</div>
@@ -127,11 +125,11 @@ $prices = $result->fetch_object();
 									</div>
 									<div>
 										<label for="single-iced-cappuccino">
-											<input type="radio" name="iced_cappuccino_price" id="single-iced-cappuccino" value="<?= $prices->iced_cappuccino_single ?>">
+											<input type="radio" name="iced_cappuccino" id="single-iced-cappuccino" value="iced_cappuccino_single" data-price="<?= $prices->iced_cappuccino_single ?>">
 											Single $<?= $prices->iced_cappuccino_single ?>
 										</label>
 										<label for="double-iced-cappuccino">
-											<input type="radio" name="iced_cappuccino_price" id="double-iced-cappuccino" value="<?= $prices->iced_cappuccino_double ?>">
+											<input type="radio" name="iced_cappuccino" id="double-iced-cappuccino" value="iced_cappuccino_double" data-price="<?= $prices->iced_cappuccino_double ?>">
 											Double $<?= $prices->iced_cappuccino_double ?>
 										</label>
 									</div>

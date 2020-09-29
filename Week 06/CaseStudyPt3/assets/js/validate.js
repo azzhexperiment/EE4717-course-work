@@ -116,7 +116,7 @@ function isValidName (value) {
   return (rule.test(value))
 }
 
-/** 
+/**
  * Validates user 'email' field.
  *
  * The email field contains a user name part follows by "@" and a domain name

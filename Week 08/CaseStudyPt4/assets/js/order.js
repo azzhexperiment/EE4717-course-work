@@ -18,11 +18,6 @@ const submitBtn = document.getElementById('submit-btn')
 // Radio elements
 const endlessJustJava = document.getElementById('endless-just-java')
 
-// Quantities
-const qtyJustJava = document.getElementById('qty-just-java')
-const qtyCafeAuLait = document.getElementById('qty-cafe-au-lait')
-const qtyIcedCappuccino = document.getElementById('qty-iced-cappuccino')
-
 // Subtotals
 const subJustJava = document.getElementById('sub-just-java')
 const subCafeAuLait = document.getElementById('sub-cafe-au-lait')
@@ -37,20 +32,20 @@ const totalCost = document.getElementById('total-cost')
 orderForm.addEventListener('change', (event) => {
   if (endlessJustJava.checked) {
     const priceEndlessJustJava = parseFloat(endlessJustJava.dataset.price)
-    const qtyOrderedJustJava = parseInt(qtyJustJava.value)
-    subJustJava.textContent = calcSubtotal(priceEndlessJustJava, qtyOrderedJustJava)
+    const qtyJustJava = parseInt(document.getElementById('qty-just-java').value)
+    subJustJava.textContent = calcSubtotal(priceEndlessJustJava, qtyJustJava)
   }
 
   if (getSelectedCafeAuLaitPrice()) {
     const priceSelectedCafeAuLait = getSelectedCafeAuLaitPrice()
-    const qtyOrderedCafeAuLait = parseInt(qtyCafeAuLait.value)
-    subCafeAuLait.textContent = calcSubtotal(priceSelectedCafeAuLait, qtyOrderedCafeAuLait)
+    const qtyCafeAuLait = parseInt(document.getElementById('qty-cafe-au-lait').value)
+    subCafeAuLait.textContent = calcSubtotal(priceSelectedCafeAuLait, qtyCafeAuLait)
   }
 
   if (getSelectedIcedCappuccinoPrice()) {
     const priceSelectedIcedCappuccino = getSelectedIcedCappuccinoPrice()
-    const qtyOrderedIcedCappuccino = parseInt(qtyIcedCappuccino.value)
-    subIcedCappuccino.textContent = calcSubtotal(priceSelectedIcedCappuccino, qtyOrderedIcedCappuccino)
+    const qtyIcedCappuccino = parseInt(document.getElementById('qty-iced-cappuccino').value)
+    subIcedCappuccino.textContent = calcSubtotal(priceSelectedIcedCappuccino, qtyIcedCappuccino)
   }
 
   totalCost.textContent = (
@@ -75,9 +70,9 @@ submitBtn.addEventListener('click', (event) => {
  * @returns {Number}
  */
 function getSelectedCafeAuLaitPrice () {
-  for (let i = 0; i < orderForm.cafe_au_lait_price.length; i++) {
-    if (orderForm.cafe_au_lait_price[i].checked) {
-      return (parseFloat(orderForm.cafe_au_lait_price[i].dataset.price))
+  for (let i = 0; i < orderForm.cafe_au_lait.length; i++) {
+    if (orderForm.cafe_au_lait[i].checked) {
+      return (parseFloat(orderForm.cafe_au_lait[i].dataset.price))
     }
   }
 }
@@ -86,9 +81,9 @@ function getSelectedCafeAuLaitPrice () {
  * @returns {Number}
  */
 function getSelectedIcedCappuccinoPrice () {
-  for (let i = 0; i < orderForm.iced_cappuccino_price.length; i++) {
-    if (orderForm.iced_cappuccino_price[i].checked) {
-      return (parseFloat(orderForm.iced_cappuccino_price[i].dataset.price))
+  for (let i = 0; i < orderForm.iced_cappuccino.length; i++) {
+    if (orderForm.iced_cappuccino[i].checked) {
+      return (parseFloat(orderForm.iced_cappuccino[i].dataset.price))
     }
   }
 }

@@ -25,41 +25,26 @@ if ($db->connect_errno) {
 $getPrices = 'SELECT * FROM prices';
 $prices = $db->query($getPrices)->fetch_object();
 
-echo '<pre>', print_r($_POST), '</pre>';
-echo '<pre>', print_r($prices), '</pre>';
+echo '<pre>', var_dump($prices), '</pre>';
 
 // Get user input qty. Default to 0 if no option selected.
 if (isset($justJava)) {
-	echo 'just java is set';
 	$just_java_qty = intval($_POST['just_java_qty']);
 } else {
-	echo 'just java NOT set';
 	$just_java_qty = 0;
 }
-
-$just_java_price    = $prices->$just_java_endless;
-$just_java_subtotal = $just_java_qty * $just_java_price;
 
 // Get user input qty. Default to 0 if no option selected.
 if (isset($cafeAuLait)) {
 	if ($cafeAuLait === 'cafe_au_lait_single') {
-		echo 'cafe single selected';
 		$cafe_au_lait_single_qty = intval($_POST['cafe_au_lait_qty']);
 	} elseif ($cafeAuLait === 'cafe_au_lait_double') {
-		echo 'cafe double selected';
 		$cafe_au_lait_double_qty = intval($_POST['cafe_au_lait_qty']);
 	}
 } else {
-	echo 'cafe double NOT selected';
 	$cafe_au_lait_single_qty = 0;
 	$cafe_au_lait_double_qty = 0;
 }
-
-$cafe_au_lait_single_price    = $prices->$cafe_au_lait_single;
-$cafe_au_lait_single_subtotal = $cafe_au_lait_single_qty * $cafe_au_lait_single_price;
-
-$cafe_au_lait_double_price    = $prices->$cafe_au_lait_double;
-$cafe_au_lait_double_subtotal = $cafe_au_lait_double_qty * $cafe_au_lait_double_price;
 
 // Get user input qty. Default to 0 if no option selected.
 if (isset($icedCappuccino)) {
@@ -73,10 +58,19 @@ if (isset($icedCappuccino)) {
 	$iced_cappuccino_double_qty = 0;
 }
 
-$iced_cappuccino_single_price    = $prices->$iced_cappuccino_single;
+$just_java_price    = $prices->just_java_endless;
+$just_java_subtotal = $just_java_qty * $just_java_price;
+
+$cafe_au_lait_single_price    = $prices->cafe_au_lait_single;
+$cafe_au_lait_single_subtotal = $cafe_au_lait_single_qty * $cafe_au_lait_single_price;
+
+$cafe_au_lait_double_price    = $prices->cafe_au_lait_double;
+$cafe_au_lait_double_subtotal = $cafe_au_lait_double_qty * $cafe_au_lait_double_price;
+
+$iced_cappuccino_single_price    = $prices->iced_cappuccino_single;
 $iced_cappuccino_single_subtotal = $iced_cappuccino_single_qty * $iced_cappuccino_single_price;
 
-$iced_cappuccino_double_price    = $prices->$iced_cappuccino_double;
+$iced_cappuccino_double_price    = $prices->iced_cappuccino_double;
 $iced_cappuccino_double_subtotal = $iced_cappuccino_double_qty * $iced_cappuccino_double_price;
 
 $total = $just_java_subtotal +

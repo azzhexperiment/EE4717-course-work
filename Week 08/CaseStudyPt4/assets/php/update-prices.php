@@ -9,8 +9,6 @@
  * @version 1.0
  */
 
-// echo '<pre>', var_dump($_POST), '</pre>';
-
 $newJustJava       = $_POST['just_java'];
 $newCafeAuLait     = $_POST['cafe_au_lait'];
 $newIcedCappuccino = $_POST['iced_cappuccino'];
@@ -44,8 +42,8 @@ if (isset($newCafeAuLait)) {
 		$db->query($updateCafeAuLaitSingle);
 	} elseif ($newCafeAuLait === 'cafe_au_lait_double') {
 		$cafe_au_lait_double = floatval($_POST['cafe_au_lait_price']);
-		$updateCafeAuLaitDouble     = 'UPDATE prices
-			SET cafe_au_lait_double    = ' . $cafe_au_lait_double . '
+		$updateCafeAuLaitDouble = 'UPDATE prices
+			SET cafe_au_lait_double = ' . $cafe_au_lait_double . '
 			WHERE id = 1';
 
 		$db->query($updateCafeAuLaitDouble);

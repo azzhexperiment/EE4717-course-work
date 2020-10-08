@@ -25,8 +25,6 @@ if ($db->connect_errno) {
 $getPrices = 'SELECT * FROM prices';
 $prices = $db->query($getPrices)->fetch_object();
 
-echo '<pre>', var_dump($prices), '</pre>';
-
 // Get user input qty. Default to 0 if no option selected.
 if (isset($justJava)) {
 	$just_java_qty = intval($_POST['just_java_qty']);
